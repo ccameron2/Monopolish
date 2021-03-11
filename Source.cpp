@@ -21,7 +21,7 @@ public:
         mType = type;
         mName = name;
     }
-    ~CSquare()
+    virtual ~CSquare()
     {
         cout << "Destructor" << endl;
     }
@@ -44,6 +44,9 @@ private:
 public:
     CProperty(int type, string name, int cost, int rent, int group) : CSquare(type, name), mCost{cost},mRent{rent},mGroup{group}
     {
+        mCost = cost;
+        mRent = rent;
+        mGroup = group;
     }
     int GetCost()
     {
@@ -245,9 +248,16 @@ int main()
     for (vector<CSquare*>::iterator it = sqrList.begin(); it != sqrList.end(); it++)
     {
 
-        cout << (*it)->GetName() << endl;
+        cout << (*it)->GetName(); 
+        if (dynamic_cast<CProperty*>(*it))
+        {
+            cout << " " << dynamic_cast<CProperty*>(*it)->GetCost() << endl;
+        }
+        cout << endl;
     }
 
+    CProperty* p = new CProperty(1,"test property", 800,8,5);
+    cout << endl << p->GetCost() << " " << p->GetRent() << " " << p->GetGroup() << endl;
     system("pause");
     return 0;
 }
