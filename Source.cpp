@@ -12,15 +12,22 @@ using namespace std;
 class CSquare
 {
 private:
-    int mType;
-    string mName;
+    int mType = 0;
+    string mName = " ";
+    int mCost = 0;
+    int mRent= 0;
+    int mGroup= 0;
 
 public:
-    CSquare(int type, string name): mType(type), mName(name)
+    CSquare(int type, string name, int cost, int rent, int group)
     { 
-
+        mType = type;
+        mName = name;
+        mCost = cost;
+        mRent = rent;
+        mGroup = group;
     }
-    virtual ~CSquare()
+    ~CSquare()
     {
         cout << "Destructor" << endl;
     }
@@ -31,18 +38,6 @@ public:
     string GetName()
     {
         return mName;
-    }
-};
-
-class CProperty : public CSquare
-{
-private:
-    int mCost;
-    int mRent;
-    int mGroup;
-public:
-    CProperty(int type, string name, int cost, int rent, int group) : CSquare(type, name), mCost{cost},mRent{rent},mGroup{group}
-    {
     }
     int GetCost()
     {
@@ -58,60 +53,61 @@ public:
     }
 };
 
+class CProperty : public CSquare
+{
+public:
+    CProperty(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
+    {
+    }
+};
+
 class CGo : public CSquare
 {
 public:
-    CGo(int type, string name) : CSquare(type, name)
+    CGo(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CStation : public CSquare
 {
 public:
-    CStation(int type, string name) : CSquare(type, name)
+    CStation(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CBonus : public CSquare
 {
 public:
-    CBonus(int type, string name) : CSquare(type, name)
+    CBonus(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CPenalty : public CSquare
 {
 public:
-    CPenalty(int type, string name) : CSquare(type, name)
+    CPenalty(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CJail : public CSquare
 {
 public:
-    CJail(int type, string name) : CSquare(type, name)
+    CJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CGoToJail : public CSquare
 {
 public:
-    CGoToJail(int type, string name) : CSquare(type, name)
+    CGoToJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
-
     }
 };
 class CFreeParking : public CSquare
 {
 public:
-    CFreeParking(int type, string name) : CSquare(type, name)
+    CFreeParking(int type, string name, int cost, int rent, int group) : CSquare(type, name,cost,rent,group)
     {
-
     }
 };
 
@@ -120,14 +116,6 @@ int main()
     vector<CSquare*> sqrList;
     string line = "";
     string word = "";
-    int sqrType = 0;
-    int sqrCost = 0;
-    int sqrRent = 0;
-    int sqrGroup = 0;
-    string nameOne = "";
-    string nameTwo = "";
-    string nameThree = "";
-    string nameFinal = "";
     ifstream fin("monopoly.txt");
     
 
@@ -140,9 +128,17 @@ int main()
             {
                 if (!isdigit(stoi(word)))
                 {
-                   
+                    int sqrType = 0;
+                    int sqrCost = 0;
+                    int sqrRent = 0;
+                    int sqrGroup = 0;
+                    string nameOne = "";
+                    string nameTwo = "";
+                    string nameThree = "";
+                    string nameFinal = "";
                     switch (stoi(word))
                     {
+
                         case 1:
                         {
                             sqrType = stoi(word);
@@ -166,7 +162,7 @@ int main()
                             sqrType = stoi(word);
                             getline(iss, word, ' ');
                             nameFinal = word;
-                            CGo* sqr = new CGo(sqrType, nameFinal);
+                            CGo* sqr = new CGo(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             break;
                         }
                         case 3:
@@ -177,7 +173,7 @@ int main()
                             getline(iss, word, ' ');
                             nameTwo = word;
                             nameFinal = nameOne + " " + nameTwo;
-                            CStation* sqr = new CStation(sqrType, nameFinal);
+                            CStation* sqr = new CStation(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }
@@ -186,7 +182,7 @@ int main()
                             sqrType = stoi(word);
                             getline(iss, word, ' ');
                             nameFinal = word;
-                            CBonus* sqr = new CBonus(sqrType, nameFinal);
+                            CBonus* sqr = new CBonus(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }
@@ -195,7 +191,7 @@ int main()
                             sqrType = stoi(word);
                             getline(iss, word, ' ');
                             nameFinal = word;
-                            CPenalty* sqr = new CPenalty(sqrType, nameFinal);
+                            CPenalty* sqr = new CPenalty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }                           
@@ -204,7 +200,7 @@ int main()
                             sqrType = stoi(word);
                             getline(iss, word, ' ');
                             nameFinal = word;
-                            CJail* sqr = new CJail(sqrType, nameFinal);
+                            CJail* sqr = new CJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }
@@ -218,7 +214,7 @@ int main()
                             getline(iss, word, ' ');
                             nameThree = word;
                             nameFinal = nameOne + " " + nameTwo + " " + nameThree;;
-                            CGoToJail* sqr = new CGoToJail(sqrType, nameFinal);
+                            CGoToJail* sqr = new CGoToJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }                       
@@ -230,7 +226,7 @@ int main()
                             getline(iss, word, ' ');
                             nameTwo = word;
                             nameFinal = nameOne + " " + nameTwo;
-                            CFreeParking* sqr = new CFreeParking(sqrType, nameFinal);
+                            CFreeParking* sqr = new CFreeParking(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
                         }                        
@@ -242,16 +238,11 @@ int main()
     }
 
     for (vector<CSquare*>::iterator it = sqrList.begin(); it != sqrList.end(); it++)
-    {
-
-        
-        if (dynamic_cast<CProperty*>(*it))
-        {
+    {       
             cout << (*it)->GetName(); 
-            cout << " " << dynamic_cast<CProperty*>(*it)->GetCost();
-            cout << " " << dynamic_cast<CProperty*>(*it)->GetRent();
-            cout << " " << dynamic_cast<CProperty*>(*it)->GetGroup() << endl;
-        }
+            cout << " " << (*it)->GetCost();
+            cout << " " << (*it)->GetRent();
+            cout << " " << (*it)->GetGroup() << endl;
     }
     system("pause");
     return 0;
