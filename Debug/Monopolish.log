@@ -1,6 +1,5 @@
 ﻿  Source.cpp
 C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(12,20): warning C4309: 'initializing': truncation of constant value
-C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(306,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(310,53): warning C4018: '>': signed/unsigned mismatch
-C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(337,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(375,45): warning C4018: '>': signed/unsigned mismatch
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Source.cpp(389,23): warning C4018: '<': signed/unsigned mismatch
   Monopolish.vcxproj -> C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Debug\Monopolish.exe

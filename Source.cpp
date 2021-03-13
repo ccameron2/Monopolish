@@ -14,9 +14,9 @@ const char POUND = 156;
 class CPlayer
 {
 private:
-    string mName;
-    int mMoney;
-    int mPosition;
+    string mName = " ";
+    int mMoney = 0;
+    int mPosition = 0;
 public:
     CPlayer(string name, int money, int position)
     {
@@ -62,6 +62,7 @@ private:
     int mCost = 0;
     int mRent= 0;
     int mGroup= 0;
+    CPlayer* mOwner = nullptr;
 
 public:
     CSquare(int type, string name, int cost, int rent, int group)
@@ -75,6 +76,10 @@ public:
     ~CSquare()
     {
         cout << "Destructor" << endl;
+    }
+    virtual void LandedOn(CPlayer* player)
+    {
+
     }
     int GetType()
     {
@@ -96,6 +101,14 @@ public:
     {
         return mGroup;
     }
+    CPlayer* GetOwner()
+    {
+        return mOwner;
+    }
+    void SetOwner(CPlayer* owner)
+    {
+        mOwner = owner;
+    }
 };
 
 class CProperty : public CSquare
@@ -103,6 +116,29 @@ class CProperty : public CSquare
 public:
     CProperty(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
+    }
+    void LandedOn(CPlayer* player)
+    {
+        cout << player->GetName() << " lands on " << GetName() << endl;
+        if (GetOwner() == nullptr)
+        {
+            //if (playerList[j]->GetMoney() - sqrList[playerPosition]->GetCost() > 0)
+            if (player->GetMoney() > 0)
+            {
+                SetOwner(player);
+                cout << player->GetName() << " buys " << GetName() << " for " << POUND << GetCost() << endl;
+                player->ChangeMoney(-GetCost());
+            }
+        }
+        else
+        {
+            if (GetOwner() != player)
+            {
+                player->ChangeMoney(-GetRent());
+                GetOwner()->ChangeMoney(GetRent());
+                cout << GetName() << " pays " << GetRent() << endl;
+            }
+        }
     }
 };
 
@@ -112,12 +148,21 @@ public:
     CGo(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
     }
+    void LandedOn(CPlayer* player)
+    {
+        cout << GetName() << " passes GO and collects " << POUND << "200 " << endl;
+        player->ChangeMoney(200);
+    }
 };
 class CStation : public CSquare
 {
 public:
     CStation(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
+    }
+    void LandedOn(CPlayer* player)
+    {
+
     }
 };
 class CBonus : public CSquare
@@ -126,12 +171,20 @@ public:
     CBonus(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
     }
+    void LandedOn(CPlayer* player)
+    {
+
+    }
 };
 class CPenalty : public CSquare
 {
 public:
     CPenalty(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
+    }
+    void LandedOn(CPlayer* player)
+    {
+
     }
 };
 class CJail : public CSquare
@@ -140,6 +193,10 @@ public:
     CJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
     }
+    void LandedOn(CPlayer* player)
+    {
+
+    }
 };
 class CGoToJail : public CSquare
 {
@@ -147,12 +204,20 @@ public:
     CGoToJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
     {
     }
+    void LandedOn(CPlayer* player)
+    {
+
+    }
 };
 class CFreeParking : public CSquare
 {
 public:
     CFreeParking(int type, string name, int cost, int rent, int group) : CSquare(type, name,cost,rent,group)
     {
+    }
+    void LandedOn(CPlayer* player)
+    {
+
     }
 };
 
@@ -303,33 +368,20 @@ int main()
     //Game Loop
     for (int i = 0; i < 20; i++)
     {
-        for (int j = 0; j < playerList.size(); j++)
+        for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
         {
             int roll = Random();
-            cout << playerList[j]->GetName() << " rolls " << roll << endl;
-            if (playerList[j]->GetPosition() + roll > sqrList.size() - 1)
+            cout << (*it)->GetName() << " rolls " << roll << endl;
+            if ((*it)->GetPosition() + roll > sqrList.size() - 1)
             {
-                playerList[j]->SetPosition(playerList[j]->GetPosition() + roll - 26);
+                (*it)->SetPosition((*it)->GetPosition() + roll - 26);
             }
             else
             {
-                playerList[j]->SetPosition(playerList[j]->GetPosition() + roll);
+                (*it)->SetPosition((*it)->GetPosition() + roll);
             }
-            
-            switch (sqrList[playerList[j]->GetPosition()]->GetType())
-            {
-                case 1:
-                    cout << playerList[j]->GetName() << " lands on " << sqrList[playerList[j]->GetPosition()]->GetName() << endl;
-                    break;
-                case 2:
-                    cout << playerList[j]->GetName() << " passes GO and collects "<< POUND << "200 " << endl;
-                    playerList[j]->ChangeMoney(200);
-                    break;
-                default:
-                    cout << playerList[j]->GetName() << " lands on " << sqrList[playerList[j]->GetPosition()]->GetName() << endl;
-                    break;
-            }           
-
+            sqrList[(*it)->GetPosition()]->LandedOn((*it));
+            cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
         }
     }
     //End game
@@ -348,13 +400,14 @@ int main()
         cout << playerList[0]->GetName() << " wins." << endl; 
     }
 
-    /*for (vector<CSquare*>::iterator it = sqrList.begin(); it != sqrList.end(); it++)
-    {       
-            cout << (*it)->GetName(); 
-            cout << " " << (*it)->GetCost();
-            cout << " " << (*it)->GetRent();
-            cout << " " << (*it)->GetGroup() << endl;
-    }*/
+    for (vector<CSquare*>::iterator it = sqrList.begin(); it != sqrList.end(); it++)
+    {
+        delete *it;
+    }
+    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
+    {
+        delete* it;
+    }
     system("pause");
     return 0;
 }
