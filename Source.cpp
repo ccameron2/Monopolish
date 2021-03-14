@@ -11,6 +11,9 @@ using namespace std;
 
 const char POUND = 156;
 
+int Random();
+int ReadInSeed();
+
 class CPlayer
 {
 private:
@@ -52,6 +55,7 @@ public:
     {
         mPosition = position;
     }
+
 };
 
 class CSquare
@@ -136,7 +140,7 @@ public:
             {
                 player->ChangeMoney(-GetRent());
                 GetOwner()->ChangeMoney(GetRent());
-                cout << GetName() << " pays " << GetRent() << endl;
+                cout << player->GetName() << " pays " << GetRent() << endl;
             }
         }
     }
@@ -150,7 +154,7 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-        cout << GetName() << " passes GO and collects " << POUND << "200 " << endl;
+        cout << player->GetName() << " passes GO and collects " << POUND << "200 " << endl;
         player->ChangeMoney(200);
     }
 };
@@ -162,7 +166,26 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-
+        cout << player->GetName() << " lands on " << GetName() << endl;
+        if (GetOwner() == nullptr)
+        {
+            //if (playerList[j]->GetMoney() - sqrList[playerPosition]->GetCost() > 0)
+            if (player->GetMoney() > 0)
+            {
+                SetOwner(player);
+                cout << player->GetName() << " buys " << GetName() << " for " << POUND << GetCost() << endl;
+                player->ChangeMoney(-GetCost());
+            }
+        }
+        else
+        {
+            if (GetOwner() != player)
+            {
+                player->ChangeMoney(-GetRent());
+                GetOwner()->ChangeMoney(GetRent());
+                cout << player->GetName() << " pays " << POUND << GetRent() << " for a ticket" <<endl;
+            }
+        }
     }
 };
 class CBonus : public CSquare
@@ -173,7 +196,34 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-
+        cout << player->GetName() << " lands on Bonus" << endl;
+        switch (Random())
+        {
+        case 1:
+            cout << "Find some money. Gain "<< POUND << "20" << endl;
+            player->ChangeMoney(20);
+            break;
+        case 2:
+            cout << "Win a coding competition. Gain " << POUND << "50" << endl;
+            player->ChangeMoney(50);
+            break;
+        case 3:
+            cout << "Receive a rent rebate. Gain " << POUND << "100" << endl;
+            player->ChangeMoney(100);
+            break;
+        case 4:
+            cout << "Win the lottery. Gain " << POUND << "150" << endl;
+            player->ChangeMoney(150);
+            break;
+        case 5:
+            cout << "Receive a bequest. Gain " << POUND << "200" << endl;
+            player->ChangeMoney(200);
+            break;
+        case 6:
+            cout << "It's your birthday. Gain " << POUND << "300" << endl;
+            player->ChangeMoney(300);
+            break;
+        }
     }
 };
 class CPenalty : public CSquare
@@ -184,7 +234,33 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-
+        switch (Random())
+        {
+        case 1:
+            cout << "Buy a coffee in Starbucks. Lose " << POUND << "20" << endl;
+            player->ChangeMoney(-20);
+            break;
+        case 2:
+            cout << "Pay your broadband bill. Lose " << POUND << "50" << endl;
+            player->ChangeMoney(-50);
+            break;
+        case 3:
+            cout << "Visit the SU shop for food. Lose " << POUND << "100" << endl;
+            player->ChangeMoney(-100);
+            break;
+        case 4:
+            cout << "Buy an assignment solution. Lose " << POUND << "150" << endl;
+            player->ChangeMoney(-150);
+            break;
+        case 5:
+            cout << "Go for a romantic meal. Lose " << POUND << "200" << endl;
+            player->ChangeMoney(-200);
+            break;
+        case 6:
+            cout << "Pay some university fees. Lose " << POUND << "300" << endl;
+            player->ChangeMoney(-300);
+            break;
+        }
     }
 };
 class CJail : public CSquare
@@ -194,8 +270,10 @@ public:
     {
     }
     void LandedOn(CPlayer* player)
-    {
-
+    {        
+          cout << player->GetName() << " lands on Jail" << endl;
+          cout << player->GetName() << " is just visiting" << endl;
+        
     }
 };
 class CGoToJail : public CSquare
@@ -206,7 +284,10 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-
+        player->SetPosition(6);
+        cout << player->GetName() << " lands on Go to Jail" << endl;
+        cout << player->GetName() << " goes to Jail" << endl;
+        cout << player->GetName() << " pays " << POUND << "50" << endl;
     }
 };
 class CFreeParking : public CSquare
@@ -217,12 +298,12 @@ public:
     }
     void LandedOn(CPlayer* player)
     {
-
+        cout << player->GetName() << " lands on Free Parking" << endl;
+        cout << player->GetName() << " is resting" << endl;
     }
 };
 
-int Random();
-int ReadInSeed();
+
 
 int main()
 {
@@ -285,6 +366,8 @@ int main()
                             getline(iss, word, ' ');
                             nameTwo = word;
                             nameFinal = nameOne + " " + nameTwo;
+                            sqrCost = 200;
+                            sqrRent = 10;
                             CStation* sqr = new CStation(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                             sqrList.push_back(sqr);
                             break;
@@ -351,7 +434,6 @@ int main()
     fin.close();
 
     srand(ReadInSeed());
-
     //Game loop setup
     int startMoney = 1500;
     int startPosition = 0;
@@ -377,7 +459,7 @@ int main()
                 (*it)->SetPosition((*it)->GetPosition() + roll - 26);
             }
             else
-            {
+            {                
                 (*it)->SetPosition((*it)->GetPosition() + roll);
             }
             sqrList[(*it)->GetPosition()]->LandedOn((*it));
@@ -406,7 +488,7 @@ int main()
     }
     for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
     {
-        delete* it;
+        delete *it;
     }
     system("pause");
     return 0;
