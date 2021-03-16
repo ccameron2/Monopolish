@@ -1,5 +1,5 @@
 #include "CStation.h"
-void CStation::LandedOn(CPlayer* player)
+void CStation::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
 {
     cout << player->GetName() << " lands on " << GetName() << endl;
     if (GetOwner() == nullptr)

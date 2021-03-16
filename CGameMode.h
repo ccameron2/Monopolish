@@ -30,6 +30,6 @@ public:
     void ReadInSquares();
     void PlayGame();
     int ReadInSeed();
-
+    void CheckRent();
 };
 

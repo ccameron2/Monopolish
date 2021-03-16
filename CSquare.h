@@ -17,11 +17,12 @@ private:
     int mRent = 0;
     int mGroup = 0;
     CPlayer* mOwner = nullptr;
+    bool mIsDoubleRent = false;
 
 public:
     CSquare(int type, string name, int cost, int rent, int group);
-    ~CSquare();
-    virtual void LandedOn(CPlayer* player);
+    virtual ~CSquare();
+    virtual void LandedOn(CPlayer* player, vector<CSquare*>& squareList);
     int GetType();
     string GetName();
     int GetCost();
@@ -29,5 +30,7 @@ public:
     void SetRent(int rent);
     int GetGroup();
     CPlayer* GetOwner();
-    void SetOwner(CPlayer* owner);
+    void SetOwner(CPlayer* player);
+    bool GetIsDoubleRent();
+    void SetIsDoubleRent(bool isDoubleRent);
 };

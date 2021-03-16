@@ -4,9 +4,7 @@ class CFreeParking :
     public CSquare
 {
 public:
-    CFreeParking(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group)
-    {
-    }
-    void LandedOn(CPlayer* player);
+    CFreeParking(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group){ }
+    void LandedOn(CPlayer* player, vector<CSquare*>& squareList);
 };
 

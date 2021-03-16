@@ -1,0 +1,33 @@
+﻿  CBonus.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CFreeParking.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CGameMode.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.h(28,24): warning C4309: 'initializing': truncation of constant value
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.cpp(153,45): warning C4018: '>': signed/unsigned mismatch
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.cpp(169,50): warning C4805: '==': unsafe mix of type 'unsigned int' and type 'bool' in operation
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.cpp(169,85): warning C4805: '==': unsafe mix of type 'unsigned int' and type 'bool' in operation
+  CGo.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CGoToJail.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CJail.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CPenalty.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CPlayer.cpp
+  CProperty.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CSquare.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  CStation.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+  Source.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.h(28,24): warning C4309: 'initializing': truncation of constant value
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 381 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Monopolish.vcxproj -> C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Release\Monopolish.exe

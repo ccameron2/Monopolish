@@ -12,7 +12,7 @@ CSquare::~CSquare()
 
 }
 
-void CSquare::LandedOn(CPlayer* player)
+void CSquare::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
 {
 
 }
@@ -48,4 +48,14 @@ CPlayer* CSquare::GetOwner()
 void CSquare::SetOwner(CPlayer* owner)
 {
     mOwner = owner;
+}
+
+bool CSquare::GetIsDoubleRent()
+{
+    return mIsDoubleRent;
+}
+
+void CSquare::SetIsDoubleRent(bool isDoubleRent)
+{
+    mIsDoubleRent = isDoubleRent;
 }

@@ -1,6 +1,6 @@
 #include "CGoToJail.h"
 
-void CGoToJail::LandedOn(CPlayer* player)
+void CGoToJail::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
 {
     player->SetPosition(6);
     cout << player->GetName() << " lands on Go to Jail" << endl;

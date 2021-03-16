@@ -17,7 +17,7 @@ void CGameMode::ReadInSquares()
                     int sqrType = 0;
                     int sqrCost = 0;
                     int sqrRent = 0;
-                    int sqrGroup = 0;
+                    int sqrGroup = 8;
                     string nameOne = "";
                     string nameTwo = "";
                     string nameThree = "";
@@ -39,7 +39,7 @@ void CGameMode::ReadInSquares()
                         sqrRent = stoi(word);
                         getline(iss, word, ' ');
                         sqrGroup = stoi(word);
-                        CProperty* sqr = new CProperty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CProperty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -48,7 +48,7 @@ void CGameMode::ReadInSquares()
                         sqrType = stoi(word);
                         getline(iss, word, ' ');
                         nameFinal = word;
-                        CGo* sqr = new CGo(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CGo(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -62,7 +62,7 @@ void CGameMode::ReadInSquares()
                         nameFinal = nameOne + " " + nameTwo;
                         sqrCost = 200;
                         sqrRent = 10;
-                        CStation* sqr = new CStation(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CStation(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -71,7 +71,7 @@ void CGameMode::ReadInSquares()
                         sqrType = stoi(word);
                         getline(iss, word, ' ');
                         nameFinal = word;
-                        CBonus* sqr = new CBonus(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CBonus(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -80,7 +80,7 @@ void CGameMode::ReadInSquares()
                         sqrType = stoi(word);
                         getline(iss, word, ' ');
                         nameFinal = word;
-                        CPenalty* sqr = new CPenalty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CPenalty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -89,7 +89,7 @@ void CGameMode::ReadInSquares()
                         sqrType = stoi(word);
                         getline(iss, word, ' ');
                         nameFinal = word;
-                        CJail* sqr = new CJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -103,7 +103,7 @@ void CGameMode::ReadInSquares()
                         getline(iss, word, ' ');
                         nameThree = word;
                         nameFinal = nameOne + " " + nameTwo + " " + nameThree;;
-                        CGoToJail* sqr = new CGoToJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CGoToJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -115,7 +115,7 @@ void CGameMode::ReadInSquares()
                         getline(iss, word, ' ');
                         nameTwo = word;
                         nameFinal = nameOne + " " + nameTwo;
-                        CFreeParking* sqr = new CFreeParking(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
+                        CSquare* sqr = new CFreeParking(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
                         squareList.push_back(sqr);
                         break;
                     }
@@ -158,15 +158,16 @@ void CGameMode::PlayGame()
             {
                 (*it)->SetPosition((*it)->GetPosition() + roll);
             }
-            squareList[(*it)->GetPosition()]->LandedOn((*it));
+            squareList[(*it)->GetPosition()]->LandedOn((*it), squareList);
             cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
         }
+        CheckRent();
     }
     //End game
     cout << "Game Over" << endl;
-    for (int i = 0; i < playerList.size(); i++)
+    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
     {
-        cout << playerList[i]->GetName() << " has " << POUND << playerList[i]->GetMoney() << endl;
+        cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
     }
     //Compare final money values
     if (playerList[1]->GetMoney() > playerList[0]->GetMoney())
@@ -198,4 +199,58 @@ int CGameMode::ReadInSeed()
     }
     fin.close();
     return seed;
+}
+
+void CGameMode::CheckRent()
+{
+    vector<CSquare*> ownedProperties;
+    for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
+    {
+        if ((*it)->GetOwner() != nullptr)
+        {
+            if (!(*it)->GetIsDoubleRent())
+            {
+                ownedProperties.push_back((*it));
+            }            
+        }
+    }
+    int size = ownedProperties.size();
+    for (int i = 0; i < size - 2; i++)
+    {
+        switch (ownedProperties[i]->GetGroup())
+        {
+        case 3 || 6:
+            if (i + 2 < ownedProperties.size())
+            {
+                if (ownedProperties[i]->GetGroup() == ownedProperties[i++]->GetGroup() && ownedProperties[i++]->GetGroup() == ownedProperties[i + 2]->GetGroup())
+                {
+                    if (ownedProperties[i]->GetOwner() == ownedProperties[i++]->GetOwner() && ownedProperties[i++]->GetOwner() == ownedProperties[i + 2]->GetOwner())
+                    {
+                        ownedProperties[i]->SetIsDoubleRent(true);
+                        ownedProperties[i++]->SetIsDoubleRent(true);
+                        ownedProperties[i + 2]->SetIsDoubleRent(true);
+                        ownedProperties[i]->SetRent(ownedProperties[i]->GetRent() * 2);
+                        ownedProperties[i++]->SetRent(ownedProperties[i++]->GetRent() * 2);
+                        ownedProperties[i + 2]->SetRent(ownedProperties[i + 2]->GetRent() * 2);
+                    }
+                }
+            }
+            break;
+        default:
+            if (i++ < ownedProperties.size())
+            {
+                if (ownedProperties[i]->GetGroup() == ownedProperties[i++]->GetGroup())
+                {
+                    if (ownedProperties[i]->GetOwner() == ownedProperties[i++]->GetOwner())
+                    {
+                        ownedProperties[i]->SetIsDoubleRent(true);
+                        ownedProperties[i++]->SetIsDoubleRent(true);
+                        ownedProperties[i]->SetRent(ownedProperties[i]->GetRent() * 2);
+                        ownedProperties[i++]->SetRent(ownedProperties[i++]->GetRent() * 2);
+                    }
+                }                                                                    
+            }
+            break;
+        }
+    }
 }
