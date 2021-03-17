@@ -203,54 +203,51 @@ int CGameMode::ReadInSeed()
 
 void CGameMode::CheckRent()
 {
-    vector<CSquare*> ownedProperties;
-    for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
+	vector<CSquare*> groupedProperties;
+	for(int i = 0; i < 8; i++)
     {
-        if ((*it)->GetOwner() != nullptr)
+        CPlayer* groupOwner = nullptr;
+        bool allOwned = false;
+        for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
         {
-            if (!(*it)->GetIsDoubleRent())
+            if ((*it)->GetGroup() == i)
             {
-                ownedProperties.push_back((*it));
+                groupedProperties.push_back((*it));
             }            
         }
-    }
-    int size = ownedProperties.size();
-    for (int i = 0; i < size - 2; i++)
-    {
-        switch (ownedProperties[i]->GetGroup())
+        groupOwner = groupedProperties[0]->GetOwner();
+        if (groupOwner != nullptr)
         {
-        case 3 || 6:
-            if (i + 2 < ownedProperties.size())
+            for (vector<CSquare*>::iterator it = groupedProperties.begin(); it != groupedProperties.end(); it++)
             {
-                if (ownedProperties[i]->GetGroup() == ownedProperties[i++]->GetGroup() && ownedProperties[i++]->GetGroup() == ownedProperties[i + 2]->GetGroup())
+                if ((*it)->GetOwner() != nullptr)
                 {
-                    if (ownedProperties[i]->GetOwner() == ownedProperties[i++]->GetOwner() && ownedProperties[i++]->GetOwner() == ownedProperties[i + 2]->GetOwner())
+                    if ((*it)->GetOwner() == groupOwner)
                     {
-                        ownedProperties[i]->SetIsDoubleRent(true);
-                        ownedProperties[i++]->SetIsDoubleRent(true);
-                        ownedProperties[i + 2]->SetIsDoubleRent(true);
-                        ownedProperties[i]->SetRent(ownedProperties[i]->GetRent() * 2);
-                        ownedProperties[i++]->SetRent(ownedProperties[i++]->GetRent() * 2);
-                        ownedProperties[i + 2]->SetRent(ownedProperties[i + 2]->GetRent() * 2);
+                        allOwned = true;
+                    }
+                    else
+                    {
+                        allOwned = false;
                     }
                 }
-            }
-            break;
-        default:
-            if (i++ < ownedProperties.size())
-            {
-                if (ownedProperties[i]->GetGroup() == ownedProperties[i++]->GetGroup())
+                else
                 {
-                    if (ownedProperties[i]->GetOwner() == ownedProperties[i++]->GetOwner())
-                    {
-                        ownedProperties[i]->SetIsDoubleRent(true);
-                        ownedProperties[i++]->SetIsDoubleRent(true);
-                        ownedProperties[i]->SetRent(ownedProperties[i]->GetRent() * 2);
-                        ownedProperties[i++]->SetRent(ownedProperties[i++]->GetRent() * 2);
-                    }
-                }                                                                    
+                    allOwned = false;
+                }
             }
-            break;
+        }        
+        if (allOwned)
+        {
+            for (vector<CSquare*>::iterator it = groupedProperties.begin(); it != groupedProperties.end(); it++)
+            {
+                if (!(*it)->GetIsDoubleRent())
+                {
+                    (*it)->SetIsDoubleRent(true);
+                    (*it)->SetRent((*it)->GetRent() * 2);
+                }                                
+            }
         }
-    }
+        groupedProperties.clear();
+    } 
 }
