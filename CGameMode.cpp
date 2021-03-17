@@ -135,11 +135,17 @@ void CGameMode::PlayGame()
     int startPosition = 0;
     string nameOne = "Dog";
     string nameTwo = "Car";
+    string nameThree = "Shoe";
+    string nameFour = "Hat";
 
     CPlayer* Dog = new CPlayer(nameOne, startMoney, startPosition);
     CPlayer* Car = new CPlayer(nameTwo, startMoney, startPosition);
+    //CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
+    //CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
     playerList.push_back(Dog);
     playerList.push_back(Car);
+    //playerList.push_back(Shoe);
+    //playerList.push_back(Hat);
 
     cout << "Welcome to Monopol-ish" << endl;
 
@@ -158,27 +164,26 @@ void CGameMode::PlayGame()
             {
                 (*it)->SetPosition((*it)->GetPosition() + roll);
             }
-            squareList[(*it)->GetPosition()]->LandedOn((*it), squareList);
+            squareList[(*it)->GetPosition()]->LandedOn((*it));
             cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
         }
         CheckRent();
     }
     //End game
     cout << "Game Over" << endl;
+    int winningAmount = 0;
     for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
     {
         cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
+        if ((*it)->GetMoney() > winningAmount){winningAmount = (*it)->GetMoney(); }
     }
-    //Compare final money values
-    if (playerList[1]->GetMoney() > playerList[0]->GetMoney())
+    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
     {
-        cout << playerList[1]->GetName() << " wins." << endl;
+        if ((*it)->GetMoney() == winningAmount)
+        {
+            cout << (*it)->GetName() << " wins." << endl;
+        }
     }
-    else
-    {
-        cout << playerList[0]->GetName() << " wins." << endl;
-    }
-
     for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
     {
         delete* it;

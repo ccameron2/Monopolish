@@ -1,5 +1,5 @@
 #include "CProperty.h"
-void CProperty::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
+void CProperty::LandedOn(CPlayer* player)
 {    
     cout << player->GetName() << " lands on " << GetName() << endl;
     if (GetOwner() == nullptr)

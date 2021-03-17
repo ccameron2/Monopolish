@@ -1,5 +1,9 @@
 ﻿  CGameMode.cpp
 C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
 C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.h(28,24): warning C4309: 'initializing': truncation of constant value
-C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.cpp(153,45): warning C4018: '>': signed/unsigned mismatch
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.cpp(159,45): warning C4018: '>': signed/unsigned mismatch
+  Source.cpp
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CSquare.h(8,20): warning C4309: 'initializing': truncation of constant value
+C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\CGameMode.h(28,24): warning C4309: 'initializing': truncation of constant value
+  Generating Code...
   Monopolish.vcxproj -> C:\Users\CCame\OneDrive - Office 365\CO2402 Advanced Programming with C++\Assignment 1\Monopolish\Debug\Monopolish.exe

@@ -22,7 +22,7 @@ private:
 public:
     CSquare(int type, string name, int cost, int rent, int group);
     virtual ~CSquare();
-    virtual void LandedOn(CPlayer* player, vector<CSquare*>& squareList);
+    virtual void LandedOn(CPlayer* player);
     int GetType();
     string GetName();
     int GetCost();

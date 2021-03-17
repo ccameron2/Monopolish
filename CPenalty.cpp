@@ -1,6 +1,6 @@
 #include "CPenalty.h"
 
-void CPenalty::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
+void CPenalty::LandedOn(CPlayer* player)
 {
     switch (player->Random())
     {

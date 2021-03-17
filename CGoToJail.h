@@ -5,5 +5,5 @@ class CGoToJail :
 {
 public:
     CGoToJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group) { }
-    void LandedOn(CPlayer* player, vector<CSquare*>& squareList);
+    void LandedOn(CPlayer* player);
 };

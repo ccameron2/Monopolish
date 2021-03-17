@@ -12,7 +12,7 @@ CSquare::~CSquare()
 
 }
 
-void CSquare::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
+void CSquare::LandedOn(CPlayer* player)
 {
 
 }

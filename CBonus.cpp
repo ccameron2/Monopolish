@@ -1,5 +1,5 @@
 #include "CBonus.h"
-void CBonus::LandedOn(CPlayer* player, vector<CSquare*>& squareList)
+void CBonus::LandedOn(CPlayer* player)
 {
     cout << player->GetName() << " lands on Bonus" << endl;
     switch (player->Random())
