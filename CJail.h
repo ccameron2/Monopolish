@@ -4,7 +4,8 @@ class CJail :
     public CSquare
 {
 public:
-    CJail(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group) { }
+    CJail(istream& file);
+    friend istream& operator >> (istream& inputStream, CJail& sqr);
     void LandedOn(CPlayer* player);
 };
 

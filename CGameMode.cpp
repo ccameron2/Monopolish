@@ -1,130 +1,21 @@
 #include "CGameMode.h"
+#include "CSquareFactory.h"
+
 
 void CGameMode::ReadInSquares()
 {
+    CSquareFactory* sqrFact = new CSquareFactory();
     string line = "";
     string word = "";
     ifstream fin("monopoly.txt");
     if (fin.is_open())
     {
-        while (getline(fin, line, '\n'))
-        {
-            istringstream iss(line);
-            while (getline(iss, word, ' '))
-            {
-                if (!isdigit(stoi(word)))
-                {
-                    int sqrType = 0;
-                    int sqrCost = 0;
-                    int sqrRent = 0;
-                    int sqrGroup = 8;
-                    string nameOne = "";
-                    string nameTwo = "";
-                    string nameThree = "";
-                    string nameFinal = "";
-                    switch (stoi(word))
-                    {
-
-                    case 1:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameOne = word;
-                        getline(iss, word, ' ');
-                        nameTwo = word;
-                        nameFinal = nameOne + " " + nameTwo;;
-                        getline(iss, word, ' ');
-                        sqrCost = stoi(word);
-                        getline(iss, word, ' ');
-                        sqrRent = stoi(word);
-                        getline(iss, word, ' ');
-                        sqrGroup = stoi(word);
-                        CSquare* sqr = new CProperty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 2:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameFinal = word;
-                        CSquare* sqr = new CGo(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 3:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameOne = word;
-                        getline(iss, word, ' ');
-                        nameTwo = word;
-                        nameFinal = nameOne + " " + nameTwo;
-                        sqrCost = 200;
-                        sqrRent = 10;
-                        CSquare* sqr = new CStation(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 4:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameFinal = word;
-                        CSquare* sqr = new CBonus(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 5:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameFinal = word;
-                        CSquare* sqr = new CPenalty(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 6:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameFinal = word;
-                        CSquare* sqr = new CJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 7:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameOne = word;
-                        getline(iss, word, ' ');
-                        nameTwo = word;
-                        getline(iss, word, ' ');
-                        nameThree = word;
-                        nameFinal = nameOne + " " + nameTwo + " " + nameThree;;
-                        CSquare* sqr = new CGoToJail(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    case 8:
-                    {
-                        sqrType = stoi(word);
-                        getline(iss, word, ' ');
-                        nameOne = word;
-                        getline(iss, word, ' ');
-                        nameTwo = word;
-                        nameFinal = nameOne + " " + nameTwo;
-                        CSquare* sqr = new CFreeParking(sqrType, nameFinal, sqrCost, sqrRent, sqrGroup);
-                        squareList.push_back(sqr);
-                        break;
-                    }
-                    }
-                }
-                getline(iss, word, ' ');
-            }
+        while (fin)
+        {          
+            squareList.push_back(sqrFact->NewSquare(fin));            
         }
     }
+    squareList.pop_back();
     fin.close();
 }
 void CGameMode::PlayGame()
@@ -140,55 +31,82 @@ void CGameMode::PlayGame()
 
     CPlayer* Dog = new CPlayer(nameOne, startMoney, startPosition);
     CPlayer* Car = new CPlayer(nameTwo, startMoney, startPosition);
-    //CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
-    //CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
+    CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
+    CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
     playerList.push_back(Dog);
     playerList.push_back(Car);
-    //playerList.push_back(Shoe);
-    //playerList.push_back(Hat);
+    playerList.push_back(Shoe);
+    playerList.push_back(Hat);
 
     cout << "Welcome to Monopol-ish" << endl;
 
+    bool gameOver = false;
     //Game Loop
-    for (int i = 0; i < 20; i++)
-    {
-        for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
+    //while(!gameOver)
+    for(int i = 0; i < 60; i++)
+    {                                        
+        for (auto it = playerList.begin(); it != playerList.end(); it++)
         {
-            int roll = (*it)->Random();
-            cout << (*it)->GetName() << " rolls " << roll << endl;
-            if ((*it)->GetPosition() + roll > squareList.size() - 1)
+            if (!(*it)->GetIsBankrupt())
             {
-                (*it)->SetPosition((*it)->GetPosition() + roll - 26);
+                int roll = (*it)->Random();
+                cout << (*it)->GetName() << " rolls " << roll << endl;
+                if ((*it)->GetPosition() + roll > squareList.size() - 1)
+                {
+                    (*it)->SetPosition((*it)->GetPosition() + roll - 26);
+                    cout << (*it)->GetName() << " passes GO and collects " << POUND << "200 " << endl;
+                    (*it)->ChangeMoney(200);
+                }
+                else
+                {
+                    (*it)->SetPosition((*it)->GetPosition() + roll);
+                }
+                squareList[(*it)->GetPosition()]->LandedOn((*it));
+                cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
+                CheckMortgage((*it));
+                if ((*it)->GetIsBankrupt())
+                {
+                    cout << (*it)->GetName() << " has gone bankrupt and lost the game." << endl;
+                }
+                CheckRent();
+
             }
-            else
+            int bankruptcyRate = 0;
+            for (auto it = playerList.begin(); it != playerList.end(); it++)
             {
-                (*it)->SetPosition((*it)->GetPosition() + roll);
+                if ((*it)->GetIsBankrupt())
+                {
+                    bankruptcyRate++;
+                }
             }
-            squareList[(*it)->GetPosition()]->LandedOn((*it));
-            cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
-        }
-        CheckRent();
+            if (bankruptcyRate == playerList.size() - 1)
+            {
+                gameOver = true;
+            }
+        }            
+                
     }
     //End game
     cout << "Game Over" << endl;
+  
     int winningAmount = 0;
-    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
+    for (auto it = playerList.begin(); it != playerList.end(); it++)
     {
         cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
         if ((*it)->GetMoney() > winningAmount){winningAmount = (*it)->GetMoney(); }
     }
-    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
+    for (auto it = playerList.begin(); it != playerList.end(); it++)
     {
         if ((*it)->GetMoney() == winningAmount)
         {
             cout << (*it)->GetName() << " wins." << endl;
         }
     }
-    for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
+    for (auto it = squareList.begin(); it != squareList.end(); it++)
     {
         delete* it;
     }
-    for (vector<CPlayer*>::iterator it = playerList.begin(); it != playerList.end(); it++)
+    for (auto it = playerList.begin(); it != playerList.end(); it++)
     {
         delete* it;
     }
@@ -208,12 +126,12 @@ int CGameMode::ReadInSeed()
 
 void CGameMode::CheckRent()
 {
-	vector<CSquare*> groupedProperties;
+    squareVector groupedProperties;
 	for(int i = 0; i < 8; i++)
     {
         CPlayer* groupOwner = nullptr;
         bool allOwned = false;
-        for (vector<CSquare*>::iterator it = squareList.begin(); it != squareList.end(); it++)
+        for (auto it = squareList.begin(); it != squareList.end(); it++)
         {
             if ((*it)->GetGroup() == i)
             {
@@ -223,7 +141,7 @@ void CGameMode::CheckRent()
         groupOwner = groupedProperties[0]->GetOwner();
         if (groupOwner != nullptr)
         {
-            for (vector<CSquare*>::iterator it = groupedProperties.begin(); it != groupedProperties.end(); it++)
+            for (auto it = groupedProperties.begin(); it != groupedProperties.end(); it++)
             {
                 if ((*it)->GetOwner() != nullptr)
                 {
@@ -244,7 +162,7 @@ void CGameMode::CheckRent()
         }        
         if (allOwned)
         {
-            for (vector<CSquare*>::iterator it = groupedProperties.begin(); it != groupedProperties.end(); it++)
+            for (auto it = groupedProperties.begin(); it != groupedProperties.end(); it++)
             {
                 if (!(*it)->GetIsDoubleRent())
                 {
@@ -255,4 +173,55 @@ void CGameMode::CheckRent()
         }
         groupedProperties.clear();
     } 
+}
+
+void CGameMode::CheckMortgage(CPlayer* player)
+{
+    squareVector ownedProperties;
+    squareVector mortgagedProperties;
+    int combPropValue = 0;
+    if (player->GetMoney() < 0)
+    {   
+        for (auto it = squareList.begin(); it != squareList.end(); it++)
+        {
+            if ((*it)->GetOwner() == player && !(*it)->GetIsMortgaged())
+            {
+                ownedProperties.push_back((*it));
+            }
+            else if ((*it)->GetOwner() == player && (*it)->GetIsMortgaged())
+            {
+                mortgagedProperties.push_back((*it));
+            }
+        }        
+        for (auto it = ownedProperties.begin(); it != ownedProperties.end(); it++)
+        {
+            combPropValue += (*it)->GetCost();
+        }
+        if (player->GetMoney() + combPropValue < 0)
+        {
+            player->SetIsBankrupt(true);
+            for (auto it = ownedProperties.begin(); it != ownedProperties.end(); it++)
+            {
+                (*it)->SetOwner(nullptr);
+                (*it)->SetIsMortgaged(false);
+                (*it)->SetIsDoubleRent(false);
+            }
+        }
+        else
+        {
+            cout << player->GetName() << " mortgages " << ownedProperties.front()->GetName() << " for " << ownedProperties.front()->GetCost() << endl;
+            player->ChangeMoney(ownedProperties.front()->GetCost());
+            ownedProperties.front()->SetIsMortgaged(true);
+        }
+        if (mortgagedProperties.size() != 0)
+        {
+            if (player->GetMoney() - mortgagedProperties.front()->GetCost() > 0)
+            {
+                cout << player->GetName() << " buys " << ownedProperties.front()->GetName() << " back again for " << ownedProperties.front()->GetCost() << endl;
+                mortgagedProperties.front()->SetIsMortgaged(false);
+                player->ChangeMoney(-mortgagedProperties.front()->GetCost());
+            }
+        }                                        
+    }
+
 }

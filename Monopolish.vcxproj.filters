@@ -51,6 +51,9 @@
     <ClCompile Include="CGameMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CSquareFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPlayer.h">
@@ -86,5 +89,11 @@
     <ClInclude Include="CGameMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CSquareFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

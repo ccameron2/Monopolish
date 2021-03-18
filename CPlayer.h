@@ -10,7 +10,7 @@ private:
     string mName = " ";
     int mMoney = 0;
     int mPosition = 0;
-
+    bool mIsBankrupt = false;
 public:
     CPlayer(string name, int money, int position);
     ~CPlayer();
@@ -22,5 +22,7 @@ public:
     void SetPosition(int position);
     int GetPosition();
     int Random();
+    bool GetIsBankrupt();
+    void SetIsBankrupt(bool isBankrupt);
 };
 

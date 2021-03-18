@@ -151,6 +151,7 @@
     <ClCompile Include="CSquare.cpp" />
     <ClCompile Include="CStation.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="CSquareFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBonus.h" />
@@ -164,6 +165,10 @@
     <ClInclude Include="CProperty.h" />
     <ClInclude Include="CSquare.h" />
     <ClInclude Include="CStation.h" />
+    <ClInclude Include="CSquareFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

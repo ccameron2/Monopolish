@@ -4,7 +4,8 @@ class CFreeParking :
     public CSquare
 {
 public:
-    CFreeParking(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group){ }
+    CFreeParking(istream& file);
+    friend istream& operator >> (istream& inputStream, CFreeParking& sqr);
     void LandedOn(CPlayer* player);
 };
 

@@ -1,34 +1,43 @@
 #include "CSquare.h"
-CSquare::CSquare(int type, string name, int cost, int rent, int group)
+CSquare::CSquare(istream& file)
 {
-    mType = type;
-    mName = name;
-    mCost = cost;
-    mRent = rent;
-    mGroup = group;
+    file >> *this;
 }
 CSquare::~CSquare()
 {
 
 }
-
-void CSquare::LandedOn(CPlayer* player)
+istream& operator >> (istream& inputStream, CSquare& sqr)
 {
-
+    return inputStream;
 }
 
-int CSquare::GetType()
-{
-    return mType;
-}
 string CSquare::GetName()
 {
     return mName;
 }
-int CSquare::GetCost()
+
+void CSquare::SetName(string name)
 {
-    return mCost;
+    mName = name;
 }
+
+
+void CSquare::SetIsMortgaged(bool isMortgaged)
+{
+    mIsMortgaged = isMortgaged;
+}
+
+CPlayer* CSquare::GetOwner()
+{
+    return mOwner;
+}
+
+void CSquare::SetOwner(CPlayer* owner)
+{
+    mOwner = owner;
+}
+
 int CSquare::GetRent()
 {
     return mRent;
@@ -41,13 +50,9 @@ int CSquare::GetGroup()
 {
     return mGroup;
 }
-CPlayer* CSquare::GetOwner()
+void CSquare::SetGroup(int group)
 {
-    return mOwner;
-}
-void CSquare::SetOwner(CPlayer* owner)
-{
-    mOwner = owner;
+    mGroup = group;
 }
 
 bool CSquare::GetIsDoubleRent()
@@ -58,4 +63,18 @@ bool CSquare::GetIsDoubleRent()
 void CSquare::SetIsDoubleRent(bool isDoubleRent)
 {
     mIsDoubleRent = isDoubleRent;
+}
+
+int CSquare::GetCost()
+{
+    return mCost;
+}
+void CSquare::SetCost(int cost)
+{
+    mCost = cost;
+}
+
+bool CSquare::GetIsMortgaged()
+{
+    return mIsMortgaged;
 }

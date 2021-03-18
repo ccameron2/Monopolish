@@ -1,6 +1,17 @@
 #include "CGo.h"
-void CGo::LandedOn(CPlayer* player)
+CGo::CGo(istream& file) : CSquare(file)
 {
-    cout << player->GetName() << " passes GO and collects " << POUND << "200 " << endl;
-    player->ChangeMoney(200);
+    file >> *this;
+}
+void CGo::LandedOn(CPlayer* player)
+{   
+    
+}
+
+istream& operator>>(istream& inputStream, CGo& sqr)
+{
+    string name = "";
+    inputStream >> name;
+    sqr.SetName(name);
+    return inputStream;
 }

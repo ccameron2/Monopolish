@@ -1,5 +1,9 @@
 #include "CPenalty.h"
 
+CPenalty::CPenalty(istream& file) : CSquare(file)
+{
+    file >> *this;
+}
 void CPenalty::LandedOn(CPlayer* player)
 {
     switch (player->Random())
@@ -29,4 +33,12 @@ void CPenalty::LandedOn(CPlayer* player)
         player->ChangeMoney(-300);
         break;
     }
+}
+
+istream& operator>>(istream& inputStream, CPenalty& sqr)
+{
+    string name;
+    inputStream >> name;
+    sqr.SetName(name);
+    return inputStream;
 }

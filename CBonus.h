@@ -4,6 +4,7 @@ class CBonus :
     public CSquare
 {
 public:
-    CBonus(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group){ }
+    CBonus(istream& file);
+    friend istream& operator >> (istream& inputStream, CBonus& sqr);
     void LandedOn(CPlayer* player);
 };

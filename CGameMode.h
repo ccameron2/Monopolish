@@ -19,17 +19,21 @@
 #include "CFreeParking.h"
 
 using namespace std;
+typedef vector<CSquare*> squareVector;
+typedef vector<CPlayer*> playerVector;
+
 
 class CGameMode
 {
 private:
-    vector<CSquare*> squareList;
-    vector<CPlayer*> playerList;
+    squareVector squareList;
+    playerVector playerList;
     const char POUND = 156;
 public:
     void ReadInSquares();
     void PlayGame();
     int ReadInSeed();
     void CheckRent();
+    void CheckMortgage(CPlayer* player);
 };
 

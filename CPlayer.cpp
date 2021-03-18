@@ -43,3 +43,13 @@ int CPlayer::Random()
     return static_cast<int>(static_cast<double> (rand()) / (RAND_MAX + 1) * 6.0f + 1);
 }
 
+bool CPlayer::GetIsBankrupt()
+{
+    return mIsBankrupt;
+}
+
+void CPlayer::SetIsBankrupt(bool isBankrupt)
+{
+    mIsBankrupt = isBankrupt;
+}
+

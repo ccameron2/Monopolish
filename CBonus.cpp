@@ -1,4 +1,8 @@
 #include "CBonus.h"
+CBonus::CBonus(istream& file) : CSquare(file)
+{
+    file >> *this;
+}
 void CBonus::LandedOn(CPlayer* player)
 {
     cout << player->GetName() << " lands on Bonus" << endl;
@@ -29,4 +33,12 @@ void CBonus::LandedOn(CPlayer* player)
         player->ChangeMoney(300);
         break;
     }
+}
+
+istream& operator>>(istream& inputStream, CBonus& sqr)
+{
+    string name;
+    inputStream >> name;
+    sqr.SetName(name);
+    return inputStream;
 }

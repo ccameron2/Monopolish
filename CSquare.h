@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 #include <iostream>
 #include "CPlayer.h"
@@ -11,24 +10,28 @@ using namespace std;
 class CSquare
 {
 private:
-    int mType = 0;
     string mName = " ";
-    int mCost = 0;
     int mRent = 0;
-    int mGroup = 0;
+    int mGroup = 8;
     CPlayer* mOwner = nullptr;
     bool mIsDoubleRent = false;
-
+    int mCost = 0;
+    bool mIsMortgaged = false;
 public:
-    CSquare(int type, string name, int cost, int rent, int group);
+    CSquare(istream &file);
     virtual ~CSquare();
-    virtual void LandedOn(CPlayer* player);
-    int GetType();
+    friend istream& operator >> (istream& inputStream, CSquare& sqr);
+    virtual void LandedOn(CPlayer* player){ }
     string GetName();
-    int GetCost();
+    void SetName(string name);   
     int GetRent();
     void SetRent(int rent);
     int GetGroup();
+    void SetGroup(int cost);
+    int GetCost();
+    void SetCost(int cost);
+    bool GetIsMortgaged();
+    void SetIsMortgaged(bool isMortgaged);
     CPlayer* GetOwner();
     void SetOwner(CPlayer* player);
     bool GetIsDoubleRent();

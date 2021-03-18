@@ -4,7 +4,8 @@ class CStation :
     public CSquare
 {
 public:
-    CStation(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group){}
+    CStation(istream& file);
+    friend istream& operator >> (istream& inputStream, CStation& sqr);
     void LandedOn(CPlayer* player);
 };
 

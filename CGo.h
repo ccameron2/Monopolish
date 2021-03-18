@@ -4,6 +4,7 @@ class CGo :
     public CSquare
 {
 public:
-    CGo(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group) {};
+    CGo(istream& file);
+    friend istream& operator >> (istream& inputStream, CGo& sqr);
     void LandedOn(CPlayer* player);
 };

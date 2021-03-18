@@ -4,7 +4,8 @@ class CPenalty :
     public CSquare
 {
 public:
-    CPenalty(int type, string name, int cost, int rent, int group) : CSquare(type, name, cost, rent, group){ }
+    CPenalty(istream& file);
+    friend istream& operator >> (istream& inputStream, CPenalty& sqr);
     void LandedOn(CPlayer* player);
     
 };
