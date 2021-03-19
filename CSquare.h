@@ -4,7 +4,7 @@
 #include "CPlayer.h"
 #include <vector>
 
-const char POUND = 156;
+const char POUND = char(156);
 using namespace std;
 
 class CSquare

@@ -28,7 +28,7 @@ class CGameMode
 private:
     squareVector squareList;
     playerVector playerList;
-    const char POUND = 156;
+    const char POUND = char(156);
 public:
     void ReadInSquares();
     void PlayGame();

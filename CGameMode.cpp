@@ -29,10 +29,6 @@ void CGameMode::PlayGame()
     string nameThree = "Shoe";
     string nameFour = "Hat";
 
-    //CPlayer* Dog = new CPlayer(nameOne, startMoney, startPosition);
-    //CPlayer* Car = new CPlayer(nameTwo, startMoney, startPosition);
-    //CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
-    //CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
     shared_ptr<CPlayer> Dog = make_shared<CPlayer>(nameOne, startMoney, startPosition);
     shared_ptr<CPlayer> Car = make_shared<CPlayer>(nameTwo, startMoney, startPosition);
     shared_ptr<CPlayer> Shoe =make_shared<CPlayer>(nameThree, startMoney, startPosition);
@@ -88,6 +84,7 @@ void CGameMode::PlayGame()
             {
                 gameOver = true;
             }
+            cout << endl;
         }            
                 
     }
