@@ -6,5 +6,5 @@ class CGo :
 public:
     CGo(istream& file);
     friend istream& operator >> (istream& inputStream, CGo& sqr);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
 };

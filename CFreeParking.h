@@ -6,6 +6,6 @@ class CFreeParking :
 public:
     CFreeParking(istream& file);
     friend istream& operator >> (istream& inputStream, CFreeParking& sqr);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
 };
 

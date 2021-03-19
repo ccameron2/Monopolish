@@ -4,7 +4,7 @@
 
 void CGameMode::ReadInSquares()
 {
-    CSquareFactory* sqrFact = new CSquareFactory();
+    unique_ptr<CSquareFactory> sqrFact = make_unique<CSquareFactory>();
     string line = "";
     string word = "";
     ifstream fin("monopoly.txt");
@@ -12,7 +12,7 @@ void CGameMode::ReadInSquares()
     {
         while (fin)
         {          
-            squareList.push_back(sqrFact->NewSquare(fin));            
+            squareList.push_back(move(sqrFact->NewSquare(fin)));            
         }
     }
     squareList.pop_back();
@@ -29,21 +29,26 @@ void CGameMode::PlayGame()
     string nameThree = "Shoe";
     string nameFour = "Hat";
 
-    CPlayer* Dog = new CPlayer(nameOne, startMoney, startPosition);
-    CPlayer* Car = new CPlayer(nameTwo, startMoney, startPosition);
-    CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
-    CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
-    playerList.push_back(Dog);
-    playerList.push_back(Car);
-    playerList.push_back(Shoe);
-    playerList.push_back(Hat);
+    //CPlayer* Dog = new CPlayer(nameOne, startMoney, startPosition);
+    //CPlayer* Car = new CPlayer(nameTwo, startMoney, startPosition);
+    //CPlayer* Shoe = new CPlayer(nameThree, startMoney, startPosition);
+    //CPlayer* Hat = new CPlayer(nameFour, startMoney, startPosition);
+    shared_ptr<CPlayer> Dog = make_shared<CPlayer>(nameOne, startMoney, startPosition);
+    shared_ptr<CPlayer> Car = make_shared<CPlayer>(nameTwo, startMoney, startPosition);
+    shared_ptr<CPlayer> Shoe =make_shared<CPlayer>(nameThree, startMoney, startPosition);
+    shared_ptr<CPlayer> Hat = make_shared<CPlayer>(nameFour, startMoney, startPosition);
+
+    playerList.push_back(move(Dog));
+    playerList.push_back(move(Car));
+    playerList.push_back(move(Shoe));
+    playerList.push_back(move(Hat));
 
     cout << "Welcome to Monopol-ish" << endl;
 
     bool gameOver = false;
     //Game Loop
     //while(!gameOver)
-    for(int i = 0; i < 60; i++)
+    for(int i = 0; i < 20; i++)
     {                                        
         for (auto it = playerList.begin(); it != playerList.end(); it++)
         {
@@ -102,14 +107,14 @@ void CGameMode::PlayGame()
             cout << (*it)->GetName() << " wins." << endl;
         }
     }
-    for (auto it = squareList.begin(); it != squareList.end(); it++)
+    /*for (auto it = squareList.begin(); it != squareList.end(); it++)
     {
         delete* it;
-    }
-    for (auto it = playerList.begin(); it != playerList.end(); it++)
-    {
-        delete* it;
-    }
+    }*/
+    //for (auto it = playerList.begin(); it != playerList.end(); it++)
+    //{
+    //    delete* it;
+    //}
 }
 int CGameMode::ReadInSeed()
 {
@@ -129,16 +134,16 @@ void CGameMode::CheckRent()
     squareVector groupedProperties;
 	for(int i = 0; i < 8; i++)
     {
-        CPlayer* groupOwner = nullptr;
+        shared_ptr<CPlayer> groupOwner = nullptr;
         bool allOwned = false;
         for (auto it = squareList.begin(); it != squareList.end(); it++)
         {
             if ((*it)->GetGroup() == i)
             {
-                groupedProperties.push_back((*it));
+                groupedProperties.push_back(*it);
             }            
         }
-        groupOwner = groupedProperties[0]->GetOwner();
+        groupOwner = groupedProperties.front()->GetOwner();
         if (groupOwner != nullptr)
         {
             for (auto it = groupedProperties.begin(); it != groupedProperties.end(); it++)
@@ -175,7 +180,7 @@ void CGameMode::CheckRent()
     } 
 }
 
-void CGameMode::CheckMortgage(CPlayer* player)
+void CGameMode::CheckMortgage(shared_ptr<CPlayer> player)
 {
     squareVector ownedProperties;
     squareVector mortgagedProperties;

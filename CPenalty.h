@@ -6,6 +6,6 @@ class CPenalty :
 public:
     CPenalty(istream& file);
     friend istream& operator >> (istream& inputStream, CPenalty& sqr);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
     
 };

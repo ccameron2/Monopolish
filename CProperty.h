@@ -5,7 +5,7 @@ class CProperty :
 {
 public:
     CProperty(istream& file);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
     friend istream& operator >> (istream& inputStream, CProperty& sqr);
 
 

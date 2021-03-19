@@ -28,12 +28,12 @@ void CSquare::SetIsMortgaged(bool isMortgaged)
     mIsMortgaged = isMortgaged;
 }
 
-CPlayer* CSquare::GetOwner()
+shared_ptr<CPlayer> CSquare::GetOwner()
 {
     return mOwner;
 }
 
-void CSquare::SetOwner(CPlayer* owner)
+void CSquare::SetOwner(shared_ptr<CPlayer> owner)
 {
     mOwner = owner;
 }

@@ -5,12 +5,13 @@ CGoToJail::CGoToJail(istream& file) : CSquare(file)
     file >> *this;
 }
 
-void CGoToJail::LandedOn(CPlayer* player)
+void CGoToJail::LandedOn(shared_ptr<CPlayer> player)
 {
     player->SetPosition(6);
     cout << player->GetName() << " lands on Go to Jail" << endl;
     cout << player->GetName() << " goes to Jail" << endl;
     cout << player->GetName() << " pays " << POUND << "50" << endl;
+    player->ChangeMoney(-50);
 }
 
 istream& operator >> (istream& inputStream, CGoToJail& sqr)

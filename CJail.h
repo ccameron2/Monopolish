@@ -6,6 +6,6 @@ class CJail :
 public:
     CJail(istream& file);
     friend istream& operator >> (istream& inputStream, CJail& sqr);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
 };
 

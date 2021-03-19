@@ -2,10 +2,10 @@
 
 int main()
 {
-	CGameMode* monopoly = new CGameMode();
+	unique_ptr<CGameMode> monopoly = make_unique<CGameMode>();
 	monopoly->ReadInSquares();
 	monopoly->PlayGame();
-	delete monopoly;
+	//delete monopoly;
 	_CrtDumpMemoryLeaks();
 	system("pause");
 }

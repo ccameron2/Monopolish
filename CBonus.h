@@ -6,5 +6,5 @@ class CBonus :
 public:
     CBonus(istream& file);
     friend istream& operator >> (istream& inputStream, CBonus& sqr);
-    void LandedOn(CPlayer* player);
+    void LandedOn(shared_ptr<CPlayer> player);
 };

@@ -24,7 +24,7 @@ istream& operator >> (istream& inputStream, CProperty& sqr)
     sqr.SetGroup(sqrGroup);
     return inputStream;
 }
-void CProperty::LandedOn(CPlayer* player)
+void CProperty::LandedOn(shared_ptr<CPlayer> player)
 {    
     cout << player->GetName() << " lands on " << GetName() << endl;
     if (GetOwner() == nullptr)
