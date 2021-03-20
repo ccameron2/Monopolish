@@ -6,6 +6,6 @@ class CStation :
 public:
     CStation(istream& file);
     friend istream& operator >> (istream& inputStream, CStation& sqr);
-    void LandedOn(shared_ptr<CPlayer> player);
+    void LandedOn(CPlayer* player);
 };
 

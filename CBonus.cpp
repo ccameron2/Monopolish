@@ -3,9 +3,8 @@ CBonus::CBonus(istream& file) : CSquare(file)
 {
     file >> *this;
 }
-void CBonus::LandedOn(shared_ptr<CPlayer> player)
+void CBonus::LandedOn(CPlayer* player)
 {
-    cout << player->GetName() << " lands on Bonus" << endl;
     switch (player->Random())
     {
     case 1:

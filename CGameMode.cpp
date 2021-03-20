@@ -29,10 +29,10 @@ void CGameMode::PlayGame()
     string nameThree = "Shoe";
     string nameFour = "Hat";
 
-    shared_ptr<CPlayer> Dog = make_shared<CPlayer>(nameOne, startMoney, startPosition);
-    shared_ptr<CPlayer> Car = make_shared<CPlayer>(nameTwo, startMoney, startPosition);
-    shared_ptr<CPlayer> Shoe =make_shared<CPlayer>(nameThree, startMoney, startPosition);
-    shared_ptr<CPlayer> Hat = make_shared<CPlayer>(nameFour, startMoney, startPosition);
+    unique_ptr<CPlayer> Dog = make_unique<CPlayer>(nameOne, startMoney, startPosition);
+    unique_ptr<CPlayer> Car = make_unique<CPlayer>(nameTwo, startMoney, startPosition);
+    unique_ptr<CPlayer> Shoe =make_unique<CPlayer>(nameThree, startMoney, startPosition);
+    unique_ptr<CPlayer> Hat = make_unique<CPlayer>(nameFour, startMoney, startPosition);
 
     playerList.push_back(move(Dog));
     playerList.push_back(move(Car));
@@ -52,7 +52,7 @@ void CGameMode::PlayGame()
             {
                 int roll = (*it)->Random();
                 cout << (*it)->GetName() << " rolls " << roll << endl;
-                if ((*it)->GetPosition() + roll > squareList.size() - 1)
+                if (unsigned((*it)->GetPosition()) + roll > squareList.size() - 1)
                 {
                     (*it)->SetPosition((*it)->GetPosition() + roll - 26);
                     cout << (*it)->GetName() << " passes GO and collects " << POUND << "200 " << endl;
@@ -62,15 +62,15 @@ void CGameMode::PlayGame()
                 {
                     (*it)->SetPosition((*it)->GetPosition() + roll);
                 }
-                squareList[(*it)->GetPosition()]->LandedOn((*it));
+                cout << (*it)->GetName() << " lands on " << squareList[(*it)->GetPosition()]->GetName() << endl;
+                squareList[(*it)->GetPosition()]->LandedOn(it->get());
                 cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
-                CheckMortgage((*it));
+                CheckMortgage(it->get());
                 if ((*it)->GetIsBankrupt())
                 {
                     cout << (*it)->GetName() << " has gone bankrupt and lost the game." << endl;
                 }
                 CheckRent();
-
             }
             int bankruptcyRate = 0;
             for (auto it = playerList.begin(); it != playerList.end(); it++)
@@ -128,16 +128,16 @@ int CGameMode::ReadInSeed()
 
 void CGameMode::CheckRent()
 {
-    squareVector groupedProperties;
+    squareObserverVector groupedProperties;
 	for(int i = 0; i < 8; i++)
     {
-        shared_ptr<CPlayer> groupOwner = nullptr;
+        CPlayer* groupOwner = nullptr;
         bool allOwned = false;
         for (auto it = squareList.begin(); it != squareList.end(); it++)
         {
             if ((*it)->GetGroup() == i)
             {
-                groupedProperties.push_back(*it);
+                groupedProperties.push_back(it->get());
             }            
         }
         groupOwner = groupedProperties.front()->GetOwner();
@@ -177,10 +177,10 @@ void CGameMode::CheckRent()
     } 
 }
 
-void CGameMode::CheckMortgage(shared_ptr<CPlayer> player)
+void CGameMode::CheckMortgage(CPlayer* player)
 {
-    squareVector ownedProperties;
-    squareVector mortgagedProperties;
+    squareObserverVector ownedProperties;
+    squareObserverVector mortgagedProperties;
     int combPropValue = 0;
     if (player->GetMoney() < 0)
     {   
@@ -188,11 +188,11 @@ void CGameMode::CheckMortgage(shared_ptr<CPlayer> player)
         {
             if ((*it)->GetOwner() == player && !(*it)->GetIsMortgaged())
             {
-                ownedProperties.push_back((*it));
+                ownedProperties.push_back(it->get());
             }
             else if ((*it)->GetOwner() == player && (*it)->GetIsMortgaged())
             {
-                mortgagedProperties.push_back((*it));
+                mortgagedProperties.push_back(it->get());
             }
         }        
         for (auto it = ownedProperties.begin(); it != ownedProperties.end(); it++)
@@ -225,5 +225,4 @@ void CGameMode::CheckMortgage(shared_ptr<CPlayer> player)
             }
         }                                        
     }
-
 }

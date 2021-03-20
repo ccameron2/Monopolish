@@ -3,9 +3,8 @@ CGo::CGo(istream& file) : CSquare(file)
 {
     file >> *this;
 }
-void CGo::LandedOn(shared_ptr<CPlayer> player)
-{   
-    cout << player->GetName() << " lands on Go " << endl;
+void CGo::LandedOn(CPlayer* player)
+{
 }
 
 istream& operator>>(istream& inputStream, CGo& sqr)

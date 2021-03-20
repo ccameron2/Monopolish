@@ -13,7 +13,7 @@ private:
     string mName = " ";
     int mRent = 0;
     int mGroup = 8;
-    shared_ptr<CPlayer> mOwner = nullptr;
+    CPlayer* mOwner = nullptr;
     bool mIsDoubleRent = false;
     int mCost = 0;
     bool mIsMortgaged = false;
@@ -22,7 +22,7 @@ public:
     CSquare(istream &file);
     virtual ~CSquare();
     friend istream& operator >> (istream& inputStream, CSquare& sqr);
-    virtual void LandedOn(shared_ptr<CPlayer> player){ }
+    virtual void LandedOn(CPlayer* player){ }
     string GetName();
     void SetName(string name);   
     int GetRent();
@@ -33,8 +33,8 @@ public:
     void SetCost(int cost);
     bool GetIsMortgaged();
     void SetIsMortgaged(bool isMortgaged);
-    shared_ptr<CPlayer> GetOwner();
-    void SetOwner(shared_ptr<CPlayer> player);
+    CPlayer* GetOwner();
+    void SetOwner(CPlayer* player);
     bool GetIsDoubleRent();
     void SetIsDoubleRent(bool isDoubleRent);
 };

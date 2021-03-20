@@ -4,7 +4,7 @@ CPenalty::CPenalty(istream& file) : CSquare(file)
 {
     file >> *this;
 }
-void CPenalty::LandedOn(shared_ptr<CPlayer> player)
+void CPenalty::LandedOn(CPlayer* player)
 {
     switch (player->Random())
     {

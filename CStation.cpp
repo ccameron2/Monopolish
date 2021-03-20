@@ -20,9 +20,8 @@ istream& operator >> (istream& inputStream, CStation& sqr)
     return inputStream;
 }
 
-void CStation::LandedOn(shared_ptr<CPlayer> player)
+void CStation::LandedOn(CPlayer* player)
 {
-    cout << player->GetName() << " lands on " << GetName() << endl;
     if (GetOwner() == nullptr)
     {
         

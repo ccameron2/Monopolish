@@ -19,8 +19,9 @@
 #include "CFreeParking.h"
 
 using namespace std;
-typedef vector<shared_ptr<CSquare>> squareVector;
-typedef vector<shared_ptr<CPlayer>> playerVector;
+typedef vector<unique_ptr<CSquare>> squareVector;
+typedef vector<unique_ptr<CPlayer>> playerVector;
+typedef vector<CSquare*> squareObserverVector;
 
 
 class CGameMode
@@ -34,6 +35,6 @@ public:
     void PlayGame();
     int ReadInSeed();
     void CheckRent();
-    void CheckMortgage(shared_ptr<CPlayer> player);
+    void CheckMortgage(CPlayer* player);
 };
 

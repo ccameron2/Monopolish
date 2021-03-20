@@ -10,7 +10,7 @@
 #include "CGoToJail.h"
 #include "CFreeParking.h"
 
-shared_ptr<CSquare> CSquareFactory::NewSquare(ifstream& file)
+unique_ptr<CSquare> CSquareFactory::NewSquare(ifstream& file)
 {
     int type = 0;
     file >> type;
@@ -19,42 +19,42 @@ shared_ptr<CSquare> CSquareFactory::NewSquare(ifstream& file)
 
     case 1:
     {
-        return make_shared<CProperty>(file);
+        return make_unique<CProperty>(file);
         break;
     }
     case 2:
     {
-        return make_shared<CGo>(file);
+        return make_unique<CGo>(file);
         break;
     }
     case 3:
     {
-        return make_shared<CStation>(file);
+        return make_unique<CStation>(file);
         break;
     }
     case 4:
     {
-        return make_shared<CBonus>(file);
+        return make_unique<CBonus>(file);
         break;
     }
     case 5:
     {
-        return make_shared<CPenalty>(file);
+        return make_unique<CPenalty>(file);
         break;
     }
     case 6:
     {
-        return make_shared<CJail>(file);
+        return make_unique<CJail>(file);
         break;
     }
     case 7:
     {
-        return make_shared<CGoToJail>(file);
+        return make_unique<CGoToJail>(file);
         break;
     }
     case 8:
     {
-        return make_shared<CFreeParking>(file);
+        return make_unique<CFreeParking>(file);
         break;
     }
     default:

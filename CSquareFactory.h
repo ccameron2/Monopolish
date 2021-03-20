@@ -3,6 +3,6 @@
 class CSquareFactory
 {
 public:
-	shared_ptr<CSquare> NewSquare(ifstream& file);
+	unique_ptr<CSquare> NewSquare(ifstream& file);
 };
 
