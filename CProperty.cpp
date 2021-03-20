@@ -35,14 +35,17 @@ void CProperty::LandedOn(CPlayer* player)
             player->ChangeMoney(-GetCost());
         }
     }
-    else if(GetOwner() != player)
+    else 
     {   
-        if (!GetIsMortgaged())
+        if (GetOwner() != player)
         {
-            player->ChangeMoney(-GetRent());
-            GetOwner()->ChangeMoney(GetRent());
-            cout << player->GetName() << " pays " << POUND << GetRent() << endl;
-        }                       
+            if (!GetIsMortgaged())
+            {
+                player->ChangeMoney(-GetRent());
+                GetOwner()->ChangeMoney(GetRent());
+                cout << player->GetName() << " pays " << POUND << GetRent() << endl;
+            }
+        }                                                
     }
 }
 

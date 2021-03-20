@@ -9,5 +9,4 @@ int main()
 		//delete monopoly;
 	}		
 	_CrtDumpMemoryLeaks();
-	system("pause");
 }

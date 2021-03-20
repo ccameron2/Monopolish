@@ -31,7 +31,7 @@ void CGameMode::PlayGame()
 
     unique_ptr<CPlayer> Dog = make_unique<CPlayer>(nameOne, startMoney, startPosition);
     unique_ptr<CPlayer> Car = make_unique<CPlayer>(nameTwo, startMoney, startPosition);
-    unique_ptr<CPlayer> Shoe =make_unique<CPlayer>(nameThree, startMoney, startPosition);
+    unique_ptr<CPlayer> Shoe = make_unique<CPlayer>(nameThree, startMoney, startPosition);
     unique_ptr<CPlayer> Hat = make_unique<CPlayer>(nameFour, startMoney, startPosition);
 
     playerList.push_back(move(Dog));
@@ -64,8 +64,8 @@ void CGameMode::PlayGame()
                 }
                 cout << (*it)->GetName() << " lands on " << squareList[(*it)->GetPosition()]->GetName() << endl;
                 squareList[(*it)->GetPosition()]->LandedOn(it->get());
-                cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;
                 CheckMortgage(it->get());
+                cout << (*it)->GetName() << " has " << POUND << (*it)->GetMoney() << endl;               
                 if ((*it)->GetIsBankrupt())
                 {
                     cout << (*it)->GetName() << " has gone bankrupt and lost the game." << endl;
@@ -182,19 +182,21 @@ void CGameMode::CheckMortgage(CPlayer* player)
     squareObserverVector ownedProperties;
     squareObserverVector mortgagedProperties;
     int combPropValue = 0;
+    for (auto it = squareList.begin(); it != squareList.end(); it++)
+    {
+        if ((*it)->GetOwner() == player && !(*it)->GetIsMortgaged())
+        {
+            ownedProperties.push_back(it->get());
+        }
+        else if ((*it)->GetOwner() == player && (*it)->GetIsMortgaged())
+        {
+            mortgagedProperties.push_back(it->get());
+        }
+    }
+
     if (player->GetMoney() < 0)
     {   
-        for (auto it = squareList.begin(); it != squareList.end(); it++)
-        {
-            if ((*it)->GetOwner() == player && !(*it)->GetIsMortgaged())
-            {
-                ownedProperties.push_back(it->get());
-            }
-            else if ((*it)->GetOwner() == player && (*it)->GetIsMortgaged())
-            {
-                mortgagedProperties.push_back(it->get());
-            }
-        }        
+              
         for (auto it = ownedProperties.begin(); it != ownedProperties.end(); it++)
         {
             combPropValue += (*it)->GetCost();
@@ -211,18 +213,29 @@ void CGameMode::CheckMortgage(CPlayer* player)
         }
         else
         {
-            cout << player->GetName() << " mortgages " << ownedProperties.front()->GetName() << " for " << ownedProperties.front()->GetCost() << endl;
-            player->ChangeMoney(ownedProperties.front()->GetCost());
-            ownedProperties.front()->SetIsMortgaged(true);
+            for (auto it = ownedProperties.begin(); it != ownedProperties.end(); it++)
+            {
+                if (player->GetMoney() < 0)
+                {
+                    cout << player->GetName() << " mortgages " << (*it)->GetName() << " for " << POUND << (*it)->GetCost() << endl;
+                    player->ChangeMoney((*it)->GetCost());
+                    (*it)->SetIsMortgaged(true);
+                }                                               
+            }
+           
         }
-        if (mortgagedProperties.size() != 0)
+                                           
+    }
+    else
+    {
+        if (mortgagedProperties.size() > 0)
         {
             if (player->GetMoney() - mortgagedProperties.front()->GetCost() > 0)
             {
-                cout << player->GetName() << " buys " << ownedProperties.front()->GetName() << " back again for " << ownedProperties.front()->GetCost() << endl;
+                cout << player->GetName() << " buys " << mortgagedProperties.front()->GetName() << " back again for " << POUND << mortgagedProperties.front()->GetCost() << endl;
                 mortgagedProperties.front()->SetIsMortgaged(false);
                 player->ChangeMoney(-mortgagedProperties.front()->GetCost());
             }
-        }                                        
+        }
     }
 }
