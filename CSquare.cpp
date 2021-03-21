@@ -30,12 +30,12 @@ void CSquare::SetIsMortgaged(bool isMortgaged)
 
 CPlayer* CSquare::GetOwner()
 {
-    return mOwner;
+    return mpOwner;
 }
 
 void CSquare::SetOwner(CPlayer* owner)
 {
-    mOwner = owner;
+    mpOwner = owner;
 }
 
 int CSquare::GetRent()

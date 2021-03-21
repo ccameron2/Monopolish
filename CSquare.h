@@ -13,7 +13,7 @@ private:
     string mName = " ";
     int mRent = 0;
     int mGroup = 8;
-    CPlayer* mOwner = nullptr;
+    CPlayer* mpOwner = nullptr;
     bool mIsDoubleRent = false;
     int mCost = 0;
     bool mIsMortgaged = false;
