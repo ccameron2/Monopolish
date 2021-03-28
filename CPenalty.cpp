@@ -2,10 +2,13 @@
 
 CPenalty::CPenalty(istream& file) : CSquare(file)
 {
+    //Pass this square to overloaded operator for data to be read.
     file >> *this;
 }
 void CPenalty::LandedOn(CPlayer* player)
 {
+    /*Roll random value for player, output appropriate message to console
+    and decrease player's money by correct amount*/
     switch (player->Random())
     {
     case 1:
@@ -37,6 +40,7 @@ void CPenalty::LandedOn(CPlayer* player)
 
 istream& operator>>(istream& inputStream, CPenalty& sqr)
 {
+    //Read in name and set value in square.
     string name;
     inputStream >> name;
     sqr.SetName(name);

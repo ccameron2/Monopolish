@@ -12,11 +12,13 @@
 
 unique_ptr<CSquare> CSquareFactory::NewSquare(ifstream& file)
 {
+    //Read in the type of square
     int type = 0;
     file >> type;
+
+    //Return the appropriate type of square
     switch (type)
     {
-
     case 1:
     {
         return make_unique<CProperty>(file);

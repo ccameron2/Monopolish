@@ -4,8 +4,8 @@ class CPenalty :
     public CSquare
 {
 public:
-    CPenalty(istream& file);
-    friend istream& operator >> (istream& inputStream, CPenalty& sqr);
-    void LandedOn(CPlayer* player);
+    CPenalty(istream& file); //Constructor that takes file parameter.
+    friend istream& operator >> (istream& inputStream, CPenalty& sqr); //Operator to read data from file.
+    void LandedOn(CPlayer* player); //Functionality of square when landed on by a player
     
 };

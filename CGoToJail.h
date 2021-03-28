@@ -4,7 +4,7 @@ class CGoToJail :
     public CSquare
 {
 public:
-    CGoToJail(istream& file);
-    friend istream& operator >> (istream& inputStream, CGoToJail& sqr);
-    void LandedOn(CPlayer* player);
+    CGoToJail(istream& file); //Constructor that takes file parameter.
+    friend istream& operator >> (istream& inputStream, CGoToJail& sqr); //Operator to read data from file.
+    void LandedOn(CPlayer* player); //Functionality of square when landed on by a player
 };

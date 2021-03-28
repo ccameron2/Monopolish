@@ -12,7 +12,6 @@ typedef vector<unique_ptr<CSquare>> squareVector;
 typedef vector<unique_ptr<CPlayer>> playerVector;
 typedef vector<CSquare*> tempSquareVector;
 
-
 class CGameMode
 {
 private:

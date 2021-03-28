@@ -1,10 +1,13 @@
 #include "CBonus.h"
 CBonus::CBonus(istream& file) : CSquare(file)
 {
+    //Pass this square to overloaded operator for data to be read.
     file >> *this;
 }
 void CBonus::LandedOn(CPlayer* player)
 {
+    /*Roll random value for player, output appropriate message to console
+    and increase player's money by correct amount*/
     switch (player->Random())
     {
     case 1:
@@ -34,8 +37,9 @@ void CBonus::LandedOn(CPlayer* player)
     }
 }
 
-istream& operator>>(istream& inputStream, CBonus& sqr)
+istream& operator >> (istream& inputStream, CBonus& sqr)
 {
+    //Read in name from file and set value on square
     string name;
     inputStream >> name;
     sqr.SetName(name);
