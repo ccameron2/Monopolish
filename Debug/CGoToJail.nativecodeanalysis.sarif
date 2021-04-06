@@ -1,0 +1,221 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.28.29913.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x0098B1C0 -il C:\\Users\\CCame\\AppData\\Local\\Temp\\_CL_b75cda47ast -typedil -f CGoToJail.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1928 -D_MSC_FULL_VER=192829913 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -EHs -D_CPPUNWIND -EHc -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -MDd -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -permissive- -Zc:wchar_t -Zc:forScope -FoDebug\\CGoToJail.obj -FdDebug\\vc142.pdb -Gd -analyze:projectdirectory C:\\Users\\CCame\\OneDrive - Office 365\\CO2402 Advanced Programming with C++\\Assignment 1\\Monopolish -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.28.29910\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/csquarefactory.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "3942a4023508b539ad47b08d46bae213"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/csquarefactory.h"
+          },
+          "hashes": {
+            "md5": "54e31bc2914f6b4369bba0c9c1f2c764"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/csquare.h"
+          },
+          "hashes": {
+            "md5": "81291b973628c8ea33c6e2cc9c2c808f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cplayer.h"
+          },
+          "hashes": {
+            "md5": "c6d12c0146de8f1e80f9d3be680b6aa8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cproperty.h"
+          },
+          "hashes": {
+            "md5": "a890ec2e2eed9113a2cf3b879927155c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cgo.h"
+          },
+          "hashes": {
+            "md5": "f8e7dc11cca368e0256bd16b6129e6fd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cstation.h"
+          },
+          "hashes": {
+            "md5": "bbe34640c99ec606366a72091eb1f090"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cbonus.h"
+          },
+          "hashes": {
+            "md5": "cab96a8fff1485640d31bc7062b597a9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cpenalty.h"
+          },
+          "hashes": {
+            "md5": "3bb51d81887a784db4d3613ef4c0b8e5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cjail.h"
+          },
+          "hashes": {
+            "md5": "384888a683bff43e5b9bbbb82012ff09"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cgotojail.h"
+          },
+          "hashes": {
+            "md5": "c66c87bfa2a77ed064843adaeac31a10"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cfreeparking.h"
+          },
+          "hashes": {
+            "md5": "651d311edc2e4a8e870e896f0b7ef9c0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/source.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "3e075e4e72f888f15e1535f0cc3925ba"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cgamemode.h"
+          },
+          "hashes": {
+            "md5": "3b60247380d986efca5f066fb187abba"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cstation.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "b7b71a8270c937bf65b04da6562ffbec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/csquare.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "35d847d8898d86216ff2e1167330177c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cproperty.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "d88d18934a973b26f7db580349a14174"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/CCame/OneDrive - Office 365/CO2402 Advanced Programming with C++/Assignment 1/Monopolish/CPlayer.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "md5": "74eb7c197f2f5ddab6a3bdae3107e1f8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cpenalty.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "b49f6e69b4116bd0c7c2b96c83ad2a1c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cjail.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "d5fa2ee111f87692d1c6d03b2b1b42fc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ccame/onedrive - office 365/co2402 advanced programming with c++/assignment 1/monopolish/cgotojail.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "md5": "4568e2fb93e2b9e0f98220c2094c6460"
+          }
+        }
+      ]
+    }
+  ]
+}

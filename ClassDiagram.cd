@@ -1,109 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CBonus">
-    <Position X="1" Y="0.5" Width="1.5" />
+    <Position X="4.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAEA=</HashCode>
       <FileName>CBonus.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CFreeParking">
-    <Position X="5" Y="0.5" Width="1.5" />
+    <Position X="6" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAACAA=</HashCode>
       <FileName>CFreeParking.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CGameMode">
-    <Position X="16.5" Y="0.75" Width="1.5" />
+    <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAACAQABAAAAAAAgAAABAAAQAIAAAAAAAAA=</HashCode>
       <FileName>CGameMode.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CGo" Collapsed="true">
-    <Position X="9" Y="0.5" Width="1.5" />
+  <Class Name="CGo">
+    <Position X="9.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>CGo.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CGoToJail" Collapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
+  <Class Name="CGoToJail">
+    <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAACAAAAAAAAA=</HashCode>
       <FileName>CGoToJail.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CJail">
-    <Position X="3" Y="0.5" Width="1.5" />
+    <Position X="4.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAA=</HashCode>
       <FileName>CJail.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CPenalty">
-    <Position X="9.25" Y="2.25" Width="1.5" />
+    <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>CPenalty.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CPlayer">
-    <Position X="17.25" Y="4.75" Width="1.5" />
+    <Position X="13.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AYAAAAAAACGAAAAAAAAAAAAAEAAgBhAAAAkAQAAAFgA=</HashCode>
       <FileName>CPlayer.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CProperty" Collapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
+  <Class Name="CProperty">
+    <Position X="7.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAA=</HashCode>
       <FileName>CProperty.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CSquare">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Position X="2" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QQAAJGAKAIAAAAAAAAAAAAAAMAAAQAAEACgAQEAQJAQ=</HashCode>
       <FileName>CSquare.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CStation">
-    <Position X="1" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>CStation.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CSquareFactory">
-    <Position X="12.5" Y="3" Width="1.5" />
+    <Position X="11.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>CSquareFactory.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Typedef Name="squareVector" Collapsed="true">
-    <Position X="14.75" Y="3.75" Width="1.5" />
+  <Class Name="CStation">
+    <Position X="7.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CGameMode.h</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>CStation.h</FileName>
     </TypeIdentifier>
-  </Typedef>
-  <Typedef Name="playerVector" Collapsed="true">
-    <Position X="14.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CGameMode.h</FileName>
-    </TypeIdentifier>
-  </Typedef>
-  <Typedef Name="tempSquareVector" Collapsed="true">
-    <Position X="14.75" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CGameMode.h</FileName>
-    </TypeIdentifier>
-  </Typedef>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

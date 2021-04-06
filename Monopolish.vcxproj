@@ -164,8 +164,8 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CProperty.h" />
     <ClInclude Include="CSquare.h" />
-    <ClInclude Include="CStation.h" />
     <ClInclude Include="CSquareFactory.h" />
+    <ClInclude Include="CStation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

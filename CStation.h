@@ -1,6 +1,6 @@
 #pragma once
 #include "CSquare.h"
-class CStation : 
+class CStation :
     public CSquare
 {
 public:

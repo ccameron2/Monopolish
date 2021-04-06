@@ -30,9 +30,6 @@
     <ClCompile Include="CGo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CBonus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,6 +51,9 @@
     <ClCompile Include="CSquareFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPlayer.h">
@@ -66,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CGo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CStation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CBonus.h">
@@ -90,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CSquareFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CStation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

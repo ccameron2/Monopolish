@@ -30,7 +30,7 @@ void CStation::LandedOn(CPlayer* player)
 {
     //If station is not owned and player can afford the station.
     if (GetOwner() == nullptr)
-    {       
+    {
         if (player->GetMoney() - GetCost() > 0)
         {
             //Deduct cost of station from player money and set owner to player.
@@ -51,6 +51,6 @@ void CStation::LandedOn(CPlayer* player)
                 GetOwner()->ChangeMoney(GetRent());
                 cout << player->GetName() << " pays " << POUND << GetRent() << " for a ticket" << endl;
             }
-        }                
+        }
     }
 }

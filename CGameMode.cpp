@@ -47,7 +47,7 @@ void CGameMode::PlayGame()
     playerList.push_back(move(Hat));
 
     //Output title
-    cout << "Welcome to Monopol-ish" << endl;
+    cout << "Welcome to Monopol-ish" << endl << endl;
 
     bool gameOver = false;
 
