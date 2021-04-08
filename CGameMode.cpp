@@ -198,6 +198,7 @@ void CGameMode::CheckRent()
                     else
                     {
                         allOwned = false;
+                        break;
                     }
                 }
                 else
